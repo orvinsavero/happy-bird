@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang='' style="height: 100vh">
+
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" href="./css/style.css">
+   <title>Leaderboard</title>
+   <style>
+      body {
+         background-image: url('/images/sky.png');
+      }
+
+      table {
+         border-collapse: collapse;
+         width: 400px;
+         margin-top: 20px;
+         border-collapse: collapse;
+         border-radius: 1.2em;
+         overflow: hidden;
+      }
+
+      th {
+         background-color: #14b13bcc;
+         color: rgb(255, 255, 255);
+      }
+
+      .rank {
+         text-align: center;
+      }
+
+      td img {
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
+
+      }
+
+      th,
+      td {
+         font-family: 'Open Sans', sans-serif;
+         text-align: center;
+         color: rgb(238, 238, 238);
+      }
+
+      tr:nth-child(even) {
+         background-color: #c3d8be60;
+      }
+
+      tr:nth-child(odd) {
+         background-color: #adadad60;
+      }
+
+      .head {
+         font-family: 'Open Sans', sans-serif;
+         font-weight: 700;
+         color: rgba(255, 255, 255, 0.89);
+      }
+   </style>
+</head>
+
+<body style='height:100%'>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <div id='cssmenu'>
+      <ul>
+         <% if (status != undefined) {%>
+         <li><a href='/home'><span> <i class="fa fa-home" style="font-size:18px"></i> Home</span></a></li>
+         <li><a href='/store'><span><span class="glyphicon">&#xe116;</span> Store</span></a></li>
+         <li><a href='/normal'><span> ▷ Normal Mode</span></a></li>
+         <li><a href='/hacktiv'><span>▶ Hacktiv Mode</span></a></li>
+         <li><a href='/performance'><span> Performance</span></a></li>
+         <% } else { %>
+         <li><a href='/'><span>Login</span></a></li>
+         <% }  %>
+         <li class='active last'><a href='/leaderboard'><span><i style="font-size:16px" class="fa">&#xf091;</i>
+                  Leaderboard</span></a></li>
+         <% if (status != undefined) {%>
+         <li class='right'><a href='/logout'><span>Logout</span></a></li>
+         <% }  %>
+      </ul>
+   </div>
+   <div style='height:100%; overflow: scroll'>
+
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+      <div class="table" style="display:flex;justify-content:center">
+
+         <div class="table1" style="margin: 2rem 3.5rem;">
+
+            <h3 class="head" style="text-align:center"> <span><i style="font-size:26px" class="fa">&#xf091;</i> Top
+                  Score</h2>
+                  <table align="center">
+                     <tr>
+                        <th class="rank" height="50" align="center"> Rank</th>
+                        <th class="rank">Avatar</th>
+                        <th class="rank">Name</th>
+                        <th class="rank">Score</th>
+                     </tr>
+
+
+                     <% user.forEach(function(x, i) {%>
+                     <tr>
+                        <td height="50" align="center">
+                           <%= i+1 + '.' %>
+                        </td>
+                        <% char.forEach(function(t){%>
+                        <% if (t.id == x.avatar){%>
+                        <td align="center">
+                           <img src="<%= t.data%>" class="img-responsive" alt="">
+
+                        </td>
+                        <% }%>
+                        <% })%>
+                        <td>
+                           <%= x.fullName%>
+                        </td>
+
+                        <td>
+                           <%= x.score%>
+                        </td>
+                     </tr>
+                     <% })%>
+                  </table>
+         </div>
+
+         <div class="table2" style="margin: 2rem 3.5rem;">
+            <h3 class="head" style="text-align:center"> <span><i style="font-size:26px" class="fa">&#xf091;</i> Top
+                  Money</h2>
+                  <table align="center">
+                     <tr>
+                        <th class="rank" height="50" align="center"> Rank</th>
+                        <th class="rank">Avatar</th>
+                        <th class="rank">Name</th>
+                        <th class="rank">Money</th>
+                     </tr>
+
+
+                     <% money.forEach(function(x, i) {%>
+                     <tr>
+                        <td height="50" align="center">
+                           <%= i+1 + '.' %>
+                        </td>
+                        <% char.forEach(function(t){%>
+                        <% if (t.id == x.avatar){%>
+                        <td align="center">
+                           <img src="<%= t.data%>" class="img-responsive" alt="">
+
+                        </td>
+                        <% }%>
+                        <% })%>
+                        <td>
+                           <%= x.fullName%>
+                        </td>
+
+                        <td>
+                           <%= x.money%>
+                        </td>
+                     </tr>
+                     <% })%>
+                  </table>
+         </div>
+      </div>
+   </div>
+</body>
+<html>

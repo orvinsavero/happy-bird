@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang='' style="height: 100vh">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>Performance</title>
+    <style>
+        body {
+            background-image: url('/images/sky.png');
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 1.2em;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: #14b13bcc;
+            color: rgb(255, 255, 255);
+        }
+
+        .rank {
+            text-align: center;
+        }
+
+        td img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        th,
+        td {
+            font-family: 'Open Sans', sans-serif;
+            text-align: center;
+            color: rgb(238, 238, 238);
+        }
+
+        tr:nth-child(even) {
+            background-color: #c3d8be60;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #adadad60;
+        }
+
+        .head {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.89);
+        }
+    </style>
+</head>
+
+<body style='height:100%'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div id='cssmenu'>
+        <ul>
+            <li><a href='/home'><span> <i class="fa fa-home" style="font-size:18px"></i> Home</span></a></li>
+            <li><a href='/store'><span><span class="glyphicon">&#xe116;</span> Store</span></a></li>
+            <li><a href='/normal'><span> ▷ Normal Mode</span></a></li>
+            <li><a href='/hacktiv'><span>▶ Hacktiv Mode</span></a></li>
+            <li class='active'><a href='/performance'><span> Performance</span></a></li>
+            <li class='last'><a href='/leaderboard'><span><i style="font-size:16px" class="fa">&#xf091;</i> Leaderboard</span></a></li>
+            <li class='right'><a href='/logout'><span>Logout</span></a></li>
+        </ul>
+    </div>
+    <div style='height:100%; overflow: scroll'>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
+            id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+        <div class="table" style="display:flex;justify-content:center">
+
+            <div class="table1" style="margin: 2rem 3.5rem;">
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/data.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                <h3 class="head" style="text-align:center">
+                    Performance Chart</h3>
+                <br>
+                <br>
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+                <div id="container" style="width: auto; height: auto;min-width: 600px"></div>
+                <script>
+                    var money2 = '<%= money1 %>'
+                    var money3 = money2.split(",")
+                    var money4 = []
+                    money3.forEach((x) => {
+                        money4.push(Number(x))
+                    })
+                    var score2 = '<%= score1 %>'
+                    var score3 = score2.split(",")
+                    var score4 = []
+                    score3.forEach((x) => {
+                        score4.push(Number(x))
+                    })
+                    var name2 = '<%= name1 %>'
+                    var name3 = name2.split(",")
+                    console.log(money3)
+                    Highcharts.chart('container', {
+
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: ' '
+                        },
+                        subtitle: {
+                            text: '<%= name%> vs Leaderboard'
+                        },
+                        xAxis: {
+                            categories: name3,
+                            crosshair: true
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'points'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                        },
+                        plotOptions: {
+                            column: {
+                                pointPadding: 0.2,
+                                borderWidth: 0
+                            }
+                        },
+                        series: [{
+                            name: 'Money',
+                            data: money4
+
+                        }, {
+                            name: 'Score',
+                            data: score4
+
+                        }]
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+</body>
+<html>
