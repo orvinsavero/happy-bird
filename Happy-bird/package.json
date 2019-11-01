@@ -17,7 +17,7 @@
     "express-session": "^1.16.1",
     "op": "0.0.6",
     "pg": "^7.11.0",
-    "sequelize": "^4.13.5",
+    "sequelize": "^5.15.1",
     "sequelize-cli": "^5.4.0",
     "session": "^0.1.0"
   }
